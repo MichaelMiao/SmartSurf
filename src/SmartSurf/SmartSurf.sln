@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartSurf", "SmartSurf\SmartSurf.vcxproj", "{B14DCBB2-41EF-4A8C-904B-D387925D6AEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartSuft1.0", "SmartSuft1.0", "{F9530C87-C323-476E-809F-EC1D4D711D92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Include", "Include", "{41FCFB67-E7F6-447C-BC17-F628C035CAD3}"
+	ProjectSection(SolutionItems) = preProject
+		..\Include\WTL80\atlapp.h = ..\Include\WTL80\atlapp.h
+		..\Include\WTL80\atlcrack.h = ..\Include\WTL80\atlcrack.h
+		..\Include\WTL80\atlctrls.h = ..\Include\WTL80\atlctrls.h
+		..\Include\WTL80\atlctrlw.h = ..\Include\WTL80\atlctrlw.h
+		..\Include\WTL80\atlctrlx.h = ..\Include\WTL80\atlctrlx.h
+		..\Include\WTL80\atlddx.h = ..\Include\WTL80\atlddx.h
+		..\Include\WTL80\atldlgs.h = ..\Include\WTL80\atldlgs.h
+		..\Include\WTL80\atldwm.h = ..\Include\WTL80\atldwm.h
+		..\Include\WTL80\atlfind.h = ..\Include\WTL80\atlfind.h
+		..\Include\WTL80\atlframe.h = ..\Include\WTL80\atlframe.h
+		..\Include\WTL80\atlgdi.h = ..\Include\WTL80\atlgdi.h
+		..\Include\WTL80\atlmisc.h = ..\Include\WTL80\atlmisc.h
+		..\Include\WTL80\atlprint.h = ..\Include\WTL80\atlprint.h
+		..\Include\WTL80\atlres.h = ..\Include\WTL80\atlres.h
+		..\Include\WTL80\atlresce.h = ..\Include\WTL80\atlresce.h
+		..\Include\WTL80\atlribbon.h = ..\Include\WTL80\atlribbon.h
+		..\Include\WTL80\atlscrl.h = ..\Include\WTL80\atlscrl.h
+		..\Include\WTL80\atlsplit.h = ..\Include\WTL80\atlsplit.h
+		..\Include\WTL80\atltheme.h = ..\Include\WTL80\atltheme.h
+		..\Include\WTL80\atluser.h = ..\Include\WTL80\atluser.h
+		..\Include\WTL80\atlwince.h = ..\Include\WTL80\atlwince.h
+		..\Include\WTL80\atlwinx.h = ..\Include\WTL80\atlwinx.h
+		..\Include\WTL80\framedlg.h = ..\Include\WTL80\framedlg.h
+		..\Include\WTL80\readme.txt = ..\Include\WTL80\readme.txt
+		..\Include\WTL80\vfcfonts.h = ..\Include\WTL80\vfcfonts.h
+		..\Include\WTL80\vfcframe.h = ..\Include\WTL80\vfcframe.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B14DCBB2-41EF-4A8C-904B-D387925D6AEC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B14DCBB2-41EF-4A8C-904B-D387925D6AEC}.Debug|Win32.Build.0 = Debug|Win32
+		{B14DCBB2-41EF-4A8C-904B-D387925D6AEC}.Release|Win32.ActiveCfg = Release|Win32
+		{B14DCBB2-41EF-4A8C-904B-D387925D6AEC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
