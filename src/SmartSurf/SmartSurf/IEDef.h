@@ -1,0 +1,9 @@
+#pragma once
+
+#define CLASS_NAME_IE_SERVER		L"Internet Explorer_Server"
+#define WM_AXUI_CREATE_NEWPAGE				(WM_USER + 1)
+#define WM_MAINUIUTIL_NOTIFY_AXUI_CREATED	(WM_USER + 2)
+#define WM_MAINUITIL_CREATEPAGE				(WM_USER + 3)
+#define WM_AX_MOVE_FOCUS_TO_IE				(WM_USER + 4)
+#define WM_AX_ATTACH_TO_MAINTHREAD			(WM_USER + 5)
+#define WM_AX_CONTROL_CREATED				(WM_USER + 6)

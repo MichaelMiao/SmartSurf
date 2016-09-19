@@ -14,8 +14,14 @@
 #include <memory.h>
 #include <tchar.h>
 #include <atlbase.h>
+#include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <list>
 #include <atlwin.h>
 #include "atlapp.h"
 #include "atlcrack.h"
 #include "atlmisc.h"
+#define TuoAssert(x) ;
 // TODO: reference additional headers your program requires here

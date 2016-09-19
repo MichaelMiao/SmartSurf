@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\IE">
+      <UniqueIdentifier>{2d863fdc-fe54-463c-8514-1ef46ac9e4bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IE">
+      <UniqueIdentifier>{b11182e2-b2cd-4648-aa48-a78519676e61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ComBase">
+      <UniqueIdentifier>{114858d2-bcee-42a6-9656-22f63450588e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ComBase">
+      <UniqueIdentifier>{16b6a0b2-a3bd-408f-bbcc-f78d3743d04e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MainFrame">
+      <UniqueIdentifier>{984e957b-6ca4-4aba-bc01-19ea2638374a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MainFrame">
+      <UniqueIdentifier>{857a34fc-de0c-4f5e-b90b-3b9eb5f08de7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -36,6 +54,48 @@
     <ClInclude Include="SmartSurf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IE\SimpleClientSite.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="ComBase\AdvisableBase.h">
+      <Filter>Header Files\ComBase</Filter>
+    </ClInclude>
+    <ClInclude Include="ComBase\IDispatchBase.h">
+      <Filter>Header Files\ComBase</Filter>
+    </ClInclude>
+    <ClInclude Include="ComBase\RefCountBase.h">
+      <Filter>Header Files\ComBase</Filter>
+    </ClInclude>
+    <ClInclude Include="IE\BrowserEvents.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="IE\AxControl.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="IEDef.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="IE\AxUI.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="MainUIUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IE\ProcessManager.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="IE\ProcessData.h">
+      <Filter>Header Files\IE</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrame\MainFrame.h">
+      <Filter>Header Files\MainFrame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +103,42 @@
     </ClCompile>
     <ClCompile Include="SmartSurf.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\SimpleClientSite.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="ComBase\IDispatchBase.cpp">
+      <Filter>Source Files\ComBase</Filter>
+    </ClCompile>
+    <ClCompile Include="ComBase\RefCountBase.cpp">
+      <Filter>Source Files\ComBase</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\BrowserEvents.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\AxControl.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\AxUI.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="MainUIUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\ProcessManager.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="IE\ProcessData.cpp">
+      <Filter>Source Files\IE</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrame\MainFrame.cpp">
+      <Filter>Source Files\MainFrame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

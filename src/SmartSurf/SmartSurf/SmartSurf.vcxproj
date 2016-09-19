@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -20,12 +20,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -40,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\..\bin\$(Configuration)\</OutDir>
-    <IncludePath>I:\MD\GitHub\SmartSurf\src\Include\WTL80;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -52,6 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Include\WTL80;.</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -80,17 +83,43 @@
     <None Include="SmartSurf.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComBase\AdvisableBase.h" />
+    <ClInclude Include="ComBase\IDispatchBase.h" />
+    <ClInclude Include="ComBase\RefCountBase.h" />
+    <ClInclude Include="IEDef.h" />
+    <ClInclude Include="IE\AxControl.h" />
+    <ClInclude Include="IE\AxUI.h" />
+    <ClInclude Include="IE\BrowserEvents.h" />
+    <ClInclude Include="IE\ProcessData.h" />
+    <ClInclude Include="IE\ProcessManager.h" />
+    <ClInclude Include="IE\SimpleClientSite.h" />
+    <ClInclude Include="MainFrame\MainFrame.h" />
+    <ClInclude Include="MainUIUtil.h" />
+    <ClInclude Include="Module.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SmartSurf.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TaskMain.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ComBase\IDispatchBase.cpp" />
+    <ClCompile Include="ComBase\RefCountBase.cpp" />
+    <ClCompile Include="IE\AxControl.cpp" />
+    <ClCompile Include="IE\AxUI.cpp" />
+    <ClCompile Include="IE\BrowserEvents.cpp" />
+    <ClCompile Include="IE\ProcessData.cpp" />
+    <ClCompile Include="IE\ProcessManager.cpp" />
+    <ClCompile Include="IE\SimpleClientSite.cpp" />
+    <ClCompile Include="MainFrame\MainFrame.cpp" />
+    <ClCompile Include="MainUIUtil.cpp" />
+    <ClCompile Include="Module.cpp" />
     <ClCompile Include="SmartSurf.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TaskMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SmartSurf.rc" />
