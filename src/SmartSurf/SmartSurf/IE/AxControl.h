@@ -8,8 +8,6 @@ class CWebBrowserEventsManager;
 class CBrowserSite;
 struct AxThreadStorageStruct
 {
-	HWND hAxControl;
-	HWND hFakeOwner;
 	CAxControl *pAxControl;
 };
 
@@ -32,7 +30,6 @@ public:
 	static DWORD WINAPI AxControlPageProc(LPVOID lParam);
 
 public:
-	static LRESULT CALLBACK WndProcHookIEThread(int iCode, WPARAM wParam, LPARAM lParam);
 
 	static AxThreadStorageStruct* GetTS();
 	static void InitTlsAxWnd();
@@ -93,8 +90,6 @@ private:	// for main ui
 	LRESULT OnAttachToMainThread(UINT, WPARAM, LPARAM, BOOL&);
 	LRESULT OnDetachToMainThread(UINT, WPARAM, LPARAM, BOOL&);
 	LRESULT OnOleCommand(UINT, WPARAM, LPARAM, BOOL&);
-	LRESULT OnAskFakeOwner(UINT, WPARAM, LPARAM, BOOL&);
-	LRESULT OnShowPupupOwned(UINT, WPARAM, LPARAM, BOOL&);
 	LRESULT OnRegisterExternalCmd(UINT, WPARAM, LPARAM, BOOL&);
 	LRESULT OnSetAxConfig(UINT, WPARAM, LPARAM, BOOL&);
 

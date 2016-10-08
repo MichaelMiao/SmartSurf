@@ -36,23 +36,6 @@ DWORD WINAPI CAxControl::AxControlPageProc(LPVOID lParam)
 	::OleInitialize(NULL);
 
 	CAxControl::CreateTls();
-	HHOOK hAxHook = ::SetWindowsHookEx(WH_CALLWNDPROC, CAxControl::WndProcHookIEThread, 0, ::GetCurrentThreadId());
-
-	class CFakeOwner : public CWindowImpl<CFakeOwner>
-	{
-	public:
-
-		CFakeOwner() {}
-		~CFakeOwner() { DestroyWindow(); }
-
-		BEGIN_MSG_MAP_EX(CFakeOwner)
-		END_MSG_MAP()
-		DECLARE_WND_CLASS(L"Aurora_Ax_FakeOwner")
-	};
-
-	CFakeOwner fakeOwner;
-	fakeOwner.Create(NULL, CRect(0, 0, 0, 0), NULL, WS_POPUP | WS_VISIBLE, WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
-
 	HWND hChildFrame = (HWND)lParam;
 	CAxControl* pNewAx = new CAxControl(hChildFrame);
 	if (GetTS())
@@ -60,16 +43,11 @@ DWORD WINAPI CAxControl::AxControlPageProc(LPVOID lParam)
 
 	CRect rcClient;
 	::GetClientRect(hChildFrame, &rcClient);
-	HWND hAxWnd = pNewAx->Create(fakeOwner, rcClient, NULL, WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS, WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE);
+	HWND hAxWnd = pNewAx->Create(NULL, rcClient, NULL, WS_POPUP | WS_CLIPCHILDREN | WS_CLIPSIBLINGS, WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE);
 
 	if (::IsWindow(hChildFrame))
 	{
 		pNewAx->SetWindowLongPtr(GWLP_USERDATA, (LONG_PTR)hChildFrame);
-		if (GetTS())
-		{
-			GetTS()->hAxControl = pNewAx->m_hWnd;
-			GetTS()->hFakeOwner = fakeOwner.m_hWnd;
-		}
 		pNewAx->Initialize();
 
 		CRect rcChildFrame;
@@ -97,8 +75,6 @@ DWORD WINAPI CAxControl::AxControlPageProc(LPVOID lParam)
 		::DestroyWindow(hAxWnd);
 	}
 	delete pNewAx;
-
-	::UnhookWindowsHookEx(hAxHook);
 	::OleUninitialize();
 	return 0;
 }
@@ -277,7 +253,6 @@ void CAxControl::TryClose()
 void CAxControl::OnDestroy()
 {
 	SetMsgHandled(FALSE);
-	// 不要在这里ShutDown
 }
 
 LRESULT CAxControl::OnWindowPosChanging(UINT, WPARAM, LPARAM lParam, BOOL&)
@@ -362,33 +337,6 @@ LRESULT CAxControl::OnStop(UINT, WPARAM, LPARAM, BOOL&)
 
 LRESULT CAxControl::OnMoveFocusToIE(UINT, WPARAM, LPARAM, BOOL&)
 {
-	/*
-	CComPtr<IHTMLDocument2> spDoc2;
-	if (SUCCEEDED(GetHtmlDocument2(&spDoc2)))
-	{
-	CComPtr<IHTMLElementCollection> spColl;
-	if (SUCCEEDED(spDoc2->get_all(&spColl)) && spColl)
-	{
-	long nCnt = 0;
-	spColl->get_length(&nCnt);
-	for (long i = 0; i < nCnt; i++)
-	{
-	CComVariant varIdx = i;
-	CComPtr<IDispatch> spTagDisp;
-	if (SUCCEEDED(spColl->item(varIdx, varIdx, &spTagDisp)) && spTagDisp)
-	{
-	short tabindex = 0;
-	CComQIPtr<IHTMLElement2> spHtmlElem2(spTagDisp);
-	if (SUCCEEDED(spHtmlElem2->get_tabIndex(&tabindex)) && tabindex >= 0)
-	{
-	spHtmlElem2->focus();
-	break;
-	}
-	}
-	}
-	}
-	}
-	*/
 	return 0;
 }
 
@@ -423,7 +371,6 @@ LRESULT CAxControl::OnAttachToMainThread(UINT uMsg, WPARAM wParam, LPARAM, BOOL&
 
 LRESULT CAxControl::OnDetachToMainThread(UINT, WPARAM, LPARAM, BOOL&)
 {
-	return 0;
 	// 移到屏幕外面去搞，否则xp下桌面闪烁
 	SetWindowPos(NULL, 30000, 30000, 0, 0, SWP_NOSIZE | SWP_HIDEWINDOW | SWP_NOACTIVATE);
 	DWORD dwStyle = ::GetWindowLong(m_hWnd, GWL_STYLE);
@@ -441,18 +388,6 @@ LRESULT CAxControl::OnOleCommand(UINT, WPARAM wparam, LPARAM lparam, BOOL&)
 	{
 		m_spIE->ExecWB((OLECMDID)wparam, (OLECMDEXECOPT)lparam, NULL, NULL);
 	}
-	return 0;
-}
-
-LRESULT CAxControl::OnAskFakeOwner(UINT, WPARAM, LPARAM, BOOL&)
-{
-	return LRESULT(CAxControl::GetTS() ? CAxControl::GetTS()->hFakeOwner : NULL);
-}
-
-LRESULT CAxControl::OnShowPupupOwned(UINT, WPARAM wParam, LPARAM, BOOL&)
-{
-	HWND hh = CAxControl::GetTS() ? CAxControl::GetTS()->hFakeOwner : NULL;
-	::ShowOwnedPopups(hh, wParam ? TRUE : FALSE);
 	return 0;
 }
 
@@ -617,70 +552,6 @@ LPCWSTR CAxControl::GetLocationUrl()
 		return bstrURL;
 	}
 	return L"";
-}
-
-class CShellEmbeddingHook : public CWindowImpl<CShellEmbeddingHook>
-{
-
-public:
-
-	CShellEmbeddingHook(HWND hShellEmbedding, CAxControl *pAx) : m_pAx(pAx)
-	{
-		SubclassWindow(hShellEmbedding);
-	}
-	~CShellEmbeddingHook() {}
-
-	void OnFinalMessage(HWND hwnd)
-	{
-		delete this;
-	}
-
-	BEGIN_MSG_MAP(CShellEmbeddingHook)
-		MESSAGE_HANDLER(WM_WINDOWPOSCHANGING, OnWindowPosChanging)
-	END_MSG_MAP()
-
-	LRESULT OnWindowPosChanging(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL &bHandled)
-	{
-		bHandled = FALSE;
-		WINDOWPOS *pos = (WINDOWPOS*)lParam;
-		if ((pos->flags & SWP_NOSIZE) != SWP_NOSIZE)
-			m_pAx->GetAxControlSize(&(pos->cx), &(pos->cy));
-		if ((pos->flags & SWP_NOMOVE) != SWP_NOMOVE)
-		{
-			pos->x = 0;
-			pos->y = 0;
-		}
-		return 0;
-	}
-
-private:
-	CAxControl *m_pAx;
-};
-
-LRESULT CAxControl::WndProcHookIEThread(int iCode, WPARAM wParam, LPARAM lParam)
-{
-	if (iCode == HC_ACTION)
-	{
-		CWPSTRUCT *pcwp = (CWPSTRUCT*)lParam;
-		if (!GetTS() || !GetTS()->pAxControl)
-			return ::CallNextHookEx(NULL, iCode, wParam, lParam);
-		CAxControl *pAx = GetTS()->pAxControl;
-		if (pcwp->message == WM_CREATE)
-		{
-			CREATESTRUCT *pCS = (CREATESTRUCT*)lParam;
-			wchar_t sz[128] = { 0 };
-			::GetClassName(pcwp->hwnd, sz, _countof(sz));
-			std::wstring strClassName = strClassName;
-			if (strClassName == L"Shell Embedding")
-			{
-				// [TuotuoXP] 做这个hook目的是为了给ie6打patch，防止ie6自行缩放ie内核窗口的大小
-				CREATESTRUCT *pcs = (CREATESTRUCT*)pcwp->lParam;
-				if (pcs->hwndParent == pAx->m_hWnd)
-					new CShellEmbeddingHook(pcwp->hwnd, pAx);
-			}
-		}
-	}
-	return ::CallNextHookEx(NULL, iCode, wParam, lParam);
 }
 
 LRESULT CAxControl::OnActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)

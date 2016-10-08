@@ -6,6 +6,7 @@ class CAxUI : public CWindowImpl<CAxUI>
 {
 
 public:
+	
 	static void InitInMainProcess();
 	static HWND sm_hAxUIWnd;
 

@@ -35,7 +35,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	g_Module.Init(NULL, hInstance);
 	RunCmd();
-
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
