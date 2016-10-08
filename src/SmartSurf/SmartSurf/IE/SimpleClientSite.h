@@ -79,7 +79,7 @@ public:
 
 	CAxControl* m_pOwner;
 
-	bool m_bIsIEServerPopupMenu;		// [WuJian] 用来判断是IE的右键菜单还是Flash的右键菜单
+	bool m_bIsIEServerPopupMenu;
 	BSTR m_bstrClickRef;
 	BSTR m_bstrClickText;
 };

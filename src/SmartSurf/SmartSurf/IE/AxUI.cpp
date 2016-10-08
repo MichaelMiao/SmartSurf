@@ -39,7 +39,6 @@ CAxUI::~CAxUI()
 
 LRESULT CAxUI::OnCreate(UINT, WPARAM, LPARAM, BOOL&)
 {
-	TuoAssert(CAxUI::sm_hAxUIWnd == NULL);
 	CAxUI::sm_hAxUIWnd = m_hWnd;
 	::PostMessage(Common::Module::GetMainUIUtil(), WM_MAINUIUTIL_NOTIFY_AXUI_CREATED, (WPARAM)m_hWnd, 0);
 	return 0;

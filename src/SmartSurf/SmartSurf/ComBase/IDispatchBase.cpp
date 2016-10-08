@@ -51,7 +51,7 @@ HRESULT CDispatchBase::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD 
 	{
 		::VariantInit(pVarResult);
 		pVarResult->vt = VT_BSTR;
-		pVarResult->bstrVal = ::SysAllocString(L"[Sogou Explorer Object]");
+		pVarResult->bstrVal = ::SysAllocString(L"");
 		return S_OK;
 	}
 	else if (dispIdMember != DISPID_UNKNOWN)

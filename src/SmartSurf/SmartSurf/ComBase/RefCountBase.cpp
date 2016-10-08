@@ -30,7 +30,6 @@ ULONG CRefCountBase::IncreaseRefCount()
 
 ULONG CRefCountBase::DecreaseRefCount()
 {
-	TuoAssert(m_uRef != 0);
 	if (--m_uRef == 0)
 	{
 		delete this;

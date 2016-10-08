@@ -93,7 +93,6 @@ HRESULT CBrowserSite::RequestNewObjectLayout()
 
 HRESULT CBrowserSite::GetWindow(HWND *phwnd)
 {
-	TuoAssert(m_pOwner);
 	if (m_pOwner)
 	{
 		*phwnd = m_pOwner->m_hWnd;
@@ -390,9 +389,6 @@ HRESULT CBrowserSite::GetExternal(IDispatch **ppDispatch)
 
 HRESULT CBrowserSite::TranslateUrl(DWORD dwTranslate, OLECHAR *pchURLIn, OLECHAR **ppchURLOut)
 {
-	//OutputDebugString(L"TranslateUrl");
-	//OutputDebugString(pchURLIn);
-
 	if (_wcsnicmp(pchURLIn, L"res://", 6) == 0)
 	{
 		std::wstring strURL;
@@ -402,10 +398,8 @@ HRESULT CBrowserSite::TranslateUrl(DWORD dwTranslate, OLECHAR *pchURLIn, OLECHAR
 			*ppchURLOut = (OLECHAR*)CoTaskMemAlloc(nBytes);
 			memset(*ppchURLOut, 0, nBytes);
 			memcpy(*ppchURLOut, strURL.c_str(), strURL.size() * 2);
-			//OutputDebugString(strURL.c_str());
 		}
 	}
-
 
 	return S_OK;
 }
@@ -428,13 +422,13 @@ HRESULT CBrowserSite::Exec(const GUID *pguidCmdGroup, DWORD nCmdID, DWORD nCmdex
 	{
 		switch (nCmdID)
 		{
-		case OLECMDID_SHOWSCRIPTERROR:			// 屏蔽脚本错误的对话框
+		case OLECMDID_SHOWSCRIPTERROR:
 		{
 			(*pvaOut).vt = VT_BOOL;
 			(*pvaOut).boolVal = VARIANT_TRUE;
 			return S_OK;
 		}
-		case IDM_REFRESH:	// webbrowser->refresh
+		case IDM_REFRESH:
 		case 6041:	// F5
 		case 6042:	// context menu
 		case 6043:	// ctrl + F5
@@ -456,9 +450,6 @@ HRESULT CBrowserSite::QueryService(REFGUID guidService, REFIID riid, void **ppvO
 {
 	return E_NOINTERFACE;
 }
-
-// [WuJian]
-
 
 #define IDM_SEPARATOR                  64000
 #define IDM_SAVE_FORM_DATA             64001

@@ -1,9 +1,6 @@
-// Author: linjian
+#pragma once
 #include "ProcessData.h"
 #include "IEDef.h"
-typedef std::map<DWORD, ProcessData> ProcessMap;
-
-#define MAKESURE_IN_MAINUIUTIL_THREAD()		TuoAssert(::GetCurrentThreadId() == GetWindowThreadProcessId(Common::Module::GetMainUIUtil(), NULL))
 
 class CProcessManager
 {
@@ -24,6 +21,4 @@ public:
 	LRESULT OnAxUICreate(UINT, WPARAM, LPARAM, BOOL&);
 
 private:
-
-	ProcessMap m_ProcessMap;
 };

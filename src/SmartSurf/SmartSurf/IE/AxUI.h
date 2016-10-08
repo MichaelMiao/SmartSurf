@@ -1,10 +1,6 @@
-// Author: linjian
 #pragma once
 #include "IEDef.h"
 
-
-// 为方便处理
-// 多进程和单进程都创建一个CAxUI，单进程的CAxUI放到一个单独的线程里面
 
 class CAxUI : public CWindowImpl<CAxUI>
 {

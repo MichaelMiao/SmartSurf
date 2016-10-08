@@ -128,6 +128,7 @@ private:
 	void ShowIEDevTool();
 
 private:
+	
 	enum
 	{
 		NAV_NONE = 0,

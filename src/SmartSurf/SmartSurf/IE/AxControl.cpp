@@ -10,7 +10,6 @@ bool CAxControl::m_bInMainProcess = false;
 void CAxControl::InitTlsAxWnd()
 {
 	sm_dwTlsIndex = ::TlsAlloc();
-	TuoAssert(TLS_OUT_OF_INDEXES != sm_dwTlsIndex);
 }
 
 void CAxControl::CreateTls()
@@ -39,7 +38,6 @@ DWORD WINAPI CAxControl::AxControlPageProc(LPVOID lParam)
 	CAxControl::CreateTls();
 	HHOOK hAxHook = ::SetWindowsHookEx(WH_CALLWNDPROC, CAxControl::WndProcHookIEThread, 0, ::GetCurrentThreadId());
 
-	// 【linjian】以后做防假死用
 	class CFakeOwner : public CWindowImpl<CFakeOwner>
 	{
 	public:
@@ -66,11 +64,7 @@ DWORD WINAPI CAxControl::AxControlPageProc(LPVOID lParam)
 
 	if (::IsWindow(hChildFrame))
 	{
-		// 通知对应的childframe，axcontrol已经创建好
 		pNewAx->SetWindowLongPtr(GWLP_USERDATA, (LONG_PTR)hChildFrame);
-		//pNewAx->ModifyStyle(WS_POPUP, WS_CHILD);
-		//pNewAx->SetParent(hChildFrame);
-
 		if (GetTS())
 		{
 			GetTS()->hAxControl = pNewAx->m_hWnd;
@@ -147,8 +141,6 @@ void CAxControl::OnFinalMessage(_In_ HWND)
 
 HRESULT CAxControl::InitWebBrowser()
 {
-	TuoAssert(!m_spBrowserSite);
-
 	m_spBrowserSite = CreateComInstance<CBrowserSite>(this);
 
 	CComPtr<IClassFactory> spClassFactory;
@@ -189,23 +181,6 @@ HRESULT CAxControl::InitWebBrowser()
 
 void CAxControl::Initialize()
 {
-	// 必须要先导航到blank，否则会影响防假死功能
-// 	bool bNoNav = ::GetProp(m_hChildFrame, CHILD_FRM_NONAV_PROP) != NULL;
-// 	if (!bNoNav)
-// 	{
-// 		m_dwRealNavigated = NAV_STARTUP_BLANK;
-// 		NavigateToBlank();
-// 	}
-// 	else
-// 	{
-// 		m_dwRealNavigated = NAV_REAL;
-// 	}
-	if (m_spIE)
-	{
-		CComBSTR bstrUrl = L"www.baidu.com";
-		HRESULT hr = m_spIE->Navigate(bstrUrl, NULL, NULL, NULL, NULL);
-	}
-	m_bInitialized = true;
 }
 
 HRESULT CAxControl::DoVerbShowWebBrowser()
