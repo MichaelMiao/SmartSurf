@@ -25,6 +25,7 @@ void CProcessManager::CreateProcess()
 
 LRESULT CProcessManager::OnCreatePage(UINT, WPARAM wParam, LPARAM, BOOL&)
 {
+
 	return 0;
 }
 

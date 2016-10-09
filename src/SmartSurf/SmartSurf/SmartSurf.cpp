@@ -2,6 +2,8 @@
 #include "SmartSurf.h"
 #include "TaskMain.h"
 #include <shellapi.h>
+#include "base/strings/stringbuf.h"
+
 
 CComModule g_Module;
 

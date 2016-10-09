@@ -8,10 +8,13 @@
     <Filter Include="src">
       <UniqueIdentifier>{383d283a-bdb1-4415-8eca-cc585eaaee3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\strings">
+      <UniqueIdentifier>{01d4e831-1b3c-4378-9da7-4fbe3522b40a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="strings\stringbuf.h">
-      <Filter>src</Filter>
+      <Filter>src\strings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
