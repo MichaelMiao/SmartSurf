@@ -26,6 +26,7 @@ struct AxControlConfig
 class CAxControl : public CWindowImpl<CAxControl>
 {
 public:
+	
 	static void GlobalInit();
 	static DWORD WINAPI AxControlPageProc(LPVOID lParam);
 
@@ -103,6 +104,7 @@ public:
 	void TryClose();
 
 public:		// for AxControl Members
+	
 	const AxControlConfig& GetConfig() const;
 	HRESULT GetBrowserObject(IOleObject** ppObject);
 	HRESULT GetBrowserObject(IWebBrowser2** ppWebBrowser);

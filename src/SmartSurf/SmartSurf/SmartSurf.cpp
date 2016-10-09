@@ -1,15 +1,7 @@
 ﻿#include "stdafx.h"
 #include "SmartSurf.h"
-#include "ComBase\RefCountBase.h"
-#include "IE\SimpleClientSite.h"
-#include "ComBase\AdvisableBase.h"
-#include "IE\BrowserEvents.h"
-#include "IE\AxControl.h"
-#include "IE\AxUI.h"
-#include "MainUIUtil.h"
 #include "TaskMain.h"
 #include <shellapi.h>
-
 
 CComModule g_Module;
 
